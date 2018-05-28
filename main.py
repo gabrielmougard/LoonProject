@@ -11,6 +11,9 @@ GPIO.setup(20,GPIO.OUT) #G_DAT()
 GPIO.setup(21,GPIO.OUT) #R_ALT()
 GPIO.setup(26,GPIO.OUT) #S_DAT()
 
+###CREATION FICHIER TAMPONS
+os.system('cd /home/pi/Desktop/TIPE && touch data.dat && touch POST.dat')
+
 ajoutAngle = 5
 
 ANGLE_FERMETURE = 0
@@ -23,6 +26,16 @@ pwm = GPIO.PWM(18,100) # pwm à 100Hz
 pwm.start(5) #on commence à 5% du dutycycle (-90°)
 
 sensor = BMP085.BMP085() #initialisation de l'altimètre
+######ecriture de la premiere ligne dans data.dat et POST.dat
+
+stream = open('/home/pi/Desktop/TIPE/data.dat','a')
+stream.write("{}\t{}".format(sensor.read_altitude(),0))
+stream.close()
+
+stream = open('/home/pi/Desktop/TIPE/POST.dat','a')
+stream.write("{}\t{}".format(sensor.read_altitude(),0))
+stream.close()
+
 ALT_MAX  = sensor.read_altitude() + 2 #la consigne est à 2m au-dessus de la base de lancement
 
 
