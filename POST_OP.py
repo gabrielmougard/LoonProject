@@ -25,8 +25,8 @@ def makeCalculus(X,Y):
     def PolynomialFitting(X,Y):
         L = np.polyfit(X, Y, DEG)
         n = len(L)
-        resultasCalcul.append(("équation du polynôme",[L[i] for i in range(n)]))
-        plt.plot(X,[sum(L[i]*X**(n-i)) for i in range(n)])  #tracé du polynome de la courbe
+        resultasCalcul.append(("Ã©quation du polynÃ´me",[L[i] for i in range(n)]))
+        plt.plot(X,[sum(L[i]*X**(n-i)) for i in range(n)])  #tracÃ© du polynome de la courbe
         
     erreurStatique()
     PolynomialFitting(X, Y)
@@ -34,12 +34,12 @@ def makeCalculus(X,Y):
            
    
 
-def scrapper():    # scrap les données du .DAT et les met sous forme (altitude, temps) (les valeurs sont des strings...)
+def scrapper():    # scrap les donnÃ©es du .DAT et les met sous forme (altitude, temps) (les valeurs sont des strings...)
     
     TIME,ALT =[],[]
     tampTIME,tampALT = [],[]
     i = 0
-    file = open('data.txt','r')
+    file = open('data.dat','r')
     A = file.read()
     
     while i <= len(A)-1:
@@ -72,19 +72,19 @@ def scrapper():    # scrap les données du .DAT et les met sous forme (altitude, 
    
                 
 plt.ion()
-fig = plt.figure()           #Création du graph
+fig = plt.figure()           #CrÃ©ation du graph
 plt.title("Altitude du ballon en fonction du temps", fontsize=20)
 plt.xlabel("Temps (en s)",fontsize=20)
 plt.ylabel("Altitude (en m)",fontsize=20)
 plt.grid(True)
-DEG = 10 #degré du polynome voir plus haut dans la fonction de lissage...)
+DEG = 10 #degrÃ© du polynome voir plus haut dans la fonction de lissage...)
 
 
 Y,X = scrapper()
 for i in range(len(X)):
-    plt.scatter(float(X[i]),float(Y[i])) #tracé du nuage de point
+    plt.scatter(float(X[i]),float(Y[i])) #tracÃ© du nuage de point
     
-plt.plot(X,[ALT_MAX]*len(X),'r--')  # tracé de la consigne ( en rouge pointillé)
+plt.plot(X,[ALT_MAX]*len(X),'r--')  # tracÃ© de la consigne ( en rouge pointillÃ©)
 makeCalculus(X, Y)
 
 pdf = PdfPages('results.pdf') #sauvegarde du graph
