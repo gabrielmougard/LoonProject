@@ -5,4 +5,11 @@ a better understanding of the purpose of such a project, see https://x.company/i
 
 ## SETUP :
 You just have to write some modifications to `autorun.sh` :
-  - replace : //work in progress /!\
+  - replace the content of `$BIN` with the directory of your project.
+    ### If you're on Linux 
+    copy/paste `autorun.sh` in the folder `/etc/init.d` and `sudo chmod a+x /etc/init.d/autorun.sh` and
+    `update-rc.d autorun.sh start 20 2 . stop 17 6 .` . It's done, `autorun.sh` will be executed at boot time !
+  
+    ### If you're on Windows
+    follow : https://www.commentcamarche.com/faq/18658-script-au-demarrage-et-a-l-arret-de-windows for setting `autorun.sh`     
+    executable at boot time...
