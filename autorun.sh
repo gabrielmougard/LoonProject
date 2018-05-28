@@ -11,12 +11,51 @@
 
 #!/bin/bash
 
-BIN=/home/pi/loon
-
-
-	$BIN/enableConnection.sh &
-	cd $BIN
-	python enableMesure.py &
-	python Asservissement.py
-		
-	exit 0			
+BIN=/home/pi/Desktop/TIPE
+SERVICE_NAME = autorun
+EXECUTABLE=main.py
+SERVICE_SHUTDOWN_SCRIPT = stop.py
+usage()
+{
+        echo "-----------------------"
+        echo "Usage: $0 (stop|start|restart)"
+        echo "-----------------------"
+}
+ 
+if [ -z $1 ]; then
+        usage
+fi
+ 
+service_start()
+{
+        echo "Starting service '${SERVICE_NAME}'..."
+        OWD=`pwd`
+        cd ${BIN} &amp;&amp; python ${EXECUTABLE}
+        cd $OWD
+        echo "Service '${SERVICE_NAME}' started successfully"
+}
+ 
+service_stop()
+{
+        echo "Stopping service '${SERVICE_NAME}'..."
+        OWD=`pwd`
+        cd ${BIN} &amp;&amp; python ${SERVICE_SHUTDOWN_SCRIPT}
+        cd $OWD
+        echo "Service '${SERVICE_NAME}' stopped"
+}
+ 
+case $1 in
+        stop)
+                service_stop
+        ;;
+        start)
+                service_start
+        ;;
+        restart)
+                service_stop
+                service_start
+        ;;
+        *)
+                usage
+esac
+exit 0			
