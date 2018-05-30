@@ -2,10 +2,6 @@ from threading import Thread
 import AsyncMesure
 import time
 
-
-
-
-
 class AsyncAsserv(Thread):
     """Thread chargé d'effectuer l'asservissement en parallèle des mesures"""
 
@@ -16,8 +12,6 @@ class AsyncAsserv(Thread):
         self.duty2 = duty2
         self.pwm = pwm
         self.ALT_MAX = ALT_MAX
-
-
 
     def run(self):
         """Code à executer pendant l'execution du Thread"""
