@@ -42,7 +42,8 @@ class BMP085(object):
         self._logger = logging.getLogger('Adafruit_BMP.BMP085')
         # Check that mode is valid.
         if mode not in [BMP085_ULTRALOWPOWER, BMP085_STANDARD, BMP085_HIGHRES, BMP085_ULTRAHIGHRES]:
-            raise ValueError('Unexpected mode value {0}.  Set mode to one of BMP085_ULTRALOWPOWER, BMP085_STANDARD, BMP085_HIGHRES, or BMP085_ULTRAHIGHRES'.format(mode))
+            raise ValueError('Unexpected mode value {0}.  Set mode to one of BMP085_ULTRALOWPOWER, BMP085_STANDARD, 
+                             BMP085_HIGHRES, or BMP085_ULTRAHIGHRES'.format(mode))
         self._mode = mode
         # Create I2C device.
         if i2c is None:
